@@ -80,7 +80,7 @@ module ActiveRecord
             statements.concat(o.indexes.map { |column_name, options| index_in_create(o.name, column_name, options) })
           end
 
-          if supports_foreign_keys?
+          if use_foreign_keys?
             statements.concat(o.foreign_keys.map { |fk| accept fk })
           end
 
@@ -935,8 +935,8 @@ module ActiveRecord
         true
       end
 
-      def supports_foreign_keys?
-        puts_log "supports_foreign_keys?"
+      def use_foreign_keys?
+        puts_log "use_foreign_keys?"
         true
       end	  
       
