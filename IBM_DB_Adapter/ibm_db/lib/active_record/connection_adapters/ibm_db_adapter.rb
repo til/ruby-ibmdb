@@ -36,7 +36,7 @@ module CallChain
 end
 
 module ActiveRecord
-  class SchemaMigration < ActiveRecord::Base
+  class SchemaMigration
     class << self
       def create_table
         unless connection.table_exists?(table_name)

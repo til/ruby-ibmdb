@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency('down')
   spec.add_dependency('rails', '>= 7.0')
   spec.requirements << 'rails, at least 7.0'
-  spec.add_dependency('activerecord', '<7.1')
+  spec.add_dependency('activerecord', '<7.2')
   spec.requirements << 'ActiveRecord, at least 7.0'
 
   candidates = Dir.glob("**/*")
