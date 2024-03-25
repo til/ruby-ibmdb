@@ -1553,7 +1553,7 @@ module ActiveRecord
 
       # Executes and logs +sql+ commands and
       # returns a +IBM_DB.Statement+ object.
-      def execute(sql, name=nil)
+      def execute(sql, name, async: false, allow_retry: false, materialize_transactions: true)
         # Logs and execute the sql instructions.
         # The +log+ method is defined in the parent class +AbstractAdapter+
 	    #sql='INSERT INTO ar_internal_metadata (key, value, created_at, updated_at) VALUES ('10', '10', '10', '10')
@@ -1567,6 +1567,7 @@ module ActiveRecord
           @servertype.execute(sql, name)
         end
       end
+      alias raw_execute execute
 
       # Executes an "UPDATE" SQL statement
       def update_direct(sql, name = nil)
