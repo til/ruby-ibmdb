@@ -2417,7 +2417,11 @@ module ActiveRecord
               # Make sure the hidden column (db2_generated_rowid_for_lobs) in DB2 z/OS isn't added to the list
               if !(column_name.match(/db2_generated_rowid_for_lobs/i))
                 puts_log "Column type = #{column_type}"
-				ruby_type = simplified_type(column_type)
+				        ruby_type = simplified_type(column_type)
+
+                # OLT custom behavior
+                ruby_type = :integer if column_name == "class"
+
                 puts_log "Ruby type after = #{ruby_type}"
 				precision = extract_precision(ruby_type)
 
