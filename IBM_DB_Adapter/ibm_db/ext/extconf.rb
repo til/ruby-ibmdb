@@ -158,6 +158,8 @@ def untarCLIPackage(archive,destination)
       elsif entry.header.typeflag == '2' #Symlink!
         File.symlink entry.header.linkname, file
       end
+    rescue Errno::EACCES, Errno::EEXIST => e
+      # probably already present, skip
     end
   end
 end
@@ -307,5 +309,8 @@ end
 
 have_header('gil_release_version.h')
 have_header('unicode_support_version.h')
+
+# Ignore error introduced with recent (ca. 14.1.1) gcc
+CONFIG["warnflags"] << " -Wno-error=int-conversion"
 
 create_makefile('ibm_db')
