@@ -2724,6 +2724,10 @@ module ActiveRecord
 
               puts_log "Column type = #{column_type}"
               ruby_type = simplified_type(column_type)
+
+              # OLT custom behavior
+              ruby_type = :integer if column_name == "class"
+
               puts_log "Ruby type after = #{ruby_type}"
               precision = extract_precision(ruby_type)
 
